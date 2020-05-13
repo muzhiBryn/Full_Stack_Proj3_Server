@@ -13,7 +13,7 @@ mongoose.connect(mongoURI);
 mongoose.Promise = global.Promise;
 
 // initialize
-const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 // const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
 
 const app = express();
