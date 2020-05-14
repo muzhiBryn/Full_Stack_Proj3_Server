@@ -5,9 +5,18 @@ const PostSchema = new Schema({
   tags: String,
   content: String,
   coverUrl: String,
+  author: { type: Schema.Types.ObjectId, ref: 'User' },
 }, {
   toObject: { virtuals: true },
-  toJSON: { virtuals: true },
+  toJSON: {
+    virtuals: true,
+    transform(doc, ret, options) {
+      ret.id = ret._id;
+      delete ret._id;
+      delete ret.__v;
+      return ret;
+    },
+  },
 });
 
 // create model class

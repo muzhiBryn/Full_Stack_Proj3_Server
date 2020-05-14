@@ -9,6 +9,7 @@ export const createPost = (req, res) => {
   p.tags = req.body.tags;
   p.content = req.body.content;
   p.coverUrl = req.body.coverUrl;
+  p.author = req.user;
   p.save()
     .then((result) => {
       res.json(result);
@@ -19,7 +20,7 @@ export const createPost = (req, res) => {
 };
 
 export const getPosts = (req, res) => {
-  Post.find()
+  Post.find().populate('author')
     .then((result) => {
       console.log(result);
       res.json(result);
@@ -32,7 +33,7 @@ export const getPosts = (req, res) => {
 
 export const getPost = (req, res) => {
   const { id } = req.params;
-  Post.findById(id)
+  Post.findById(id).populate('author')
     .then((result) => {
       res.json(result);
     })
